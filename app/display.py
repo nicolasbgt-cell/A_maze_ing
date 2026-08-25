@@ -1,10 +1,14 @@
-from mazegen.generator import NORTH, EAST, SOUTH, WEST
+from mazegen.generator import NORTH, EAST, SOUTH, WEST, ALL_WALLS
 
 
 CORNER = "+"
 WALL_H = "-"
 WALL_V = "|"
 EMPTY = " "
+
+RESET = "\033[0m"
+COLOR_WALL = "\033[36m"
+COLOR_PATTERN = "\033[31m"
 
 
 def _horizontal_border(width: int) -> str:
@@ -42,7 +46,10 @@ def right_segment(cell: int) -> str:
 def content_row(row: list[int]) -> str:
     line = ""
     for cell in row:
-        line += left_segment(cell) + EMPTY * 3
+        if cell == ALL_WALLS:
+            line += COLOR_PATTERN + left_segment(cell) + EMPTY * 3 + RESET
+        else:
+            line += left_segment(cell) + EMPTY * 3
     line += right_segment(row[-1])
     return line
 
@@ -50,7 +57,10 @@ def content_row(row: list[int]) -> str:
 def bottom_row(row: list[int]) -> str:
     line = CORNER
     for cell in row:
-        line += down_segment(cell) + CORNER
+        if cell == ALL_WALLS:
+            line += COLOR_PATTERN + down_segment(cell) + CORNER + RESET
+        else:
+            line += down_segment(cell) + CORNER
     return line
 
 

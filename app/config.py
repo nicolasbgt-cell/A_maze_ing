@@ -52,23 +52,22 @@ def load_config(path: str) -> Config:
     if missing:
         raise ConfigError(f"Missing keys in configuration file: {missing}")
 
-    seed: int | None
-    if "SEED" in pairs:
-        seed = int(pairs["SEED"])
-    else:
-        seed = None
-
     try:
+        seed = int(pairs["SEED"]) if "SEED" in pairs else None
         width: int = int(pairs["WIDTH"])
         height: int = int(pairs["HEIGHT"])
-        entry_parts = pairs["ENTRY"].split(",")
-        entry: Coordinate = (int(entry_parts[0]), int(entry_parts[1]))
-        exit_parts = pairs["EXIT"].split(",")
-        exit_coord: Coordinate = (int(exit_parts[0]), int(exit_parts[1]))
-        perfect: bool = pairs["PERFECT"] == "True"
+        entry_x, entry_y = pairs["ENTRY"].split(",")
+        entry: Coordinate = (int(entry_x), int(entry_y))
+        exit_x, exit_y = pairs["EXIT"].split(",")
+        exit_coord: Coordinate = (int(exit_x), int(exit_y))
     except (ValueError, IndexError) as error:
         raise ConfigError("Invalid numeric value in configuration :"
                           f"{error}") from error
+
+    perfect_value = pairs["PERFECT"]
+    if perfect_value not in {"True", "False"}:
+        raise ConfigError("PERFECT must be True or False.")
+    perfect = perfect_value == "True"
 
     return Config(width=width, height=height, entry=entry, exit=exit_coord,
                   output_file=pairs["OUTPUT_FILE"], perfect=perfect, seed=seed)
