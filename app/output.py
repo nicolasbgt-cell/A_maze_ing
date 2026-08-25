@@ -1,3 +1,6 @@
+from mazegen.generator import Coordinate
+
+
 def _cell_to_hex(value: int) -> str:
     return hex(value)[2:].upper()
 
@@ -13,6 +16,8 @@ def _direction(current: Coordinate, next_cell: Coordinate) -> str:
         return "S"
     elif dx == -1 and dy == 0:
         return "W"
+    else:
+        raise ValueError(f"Cellules non voisines: {current} -> {next_cell}")
 
 
 def path_to_directions(path: list[Coordinate]) -> str:
@@ -36,7 +41,7 @@ def write_maze(
         exit: Coordinate,
         path: list[Coordinate],
         ) -> None:
-    
+
     lines = []
     for row in grid:
         lines.append(_row_to_hex(row))

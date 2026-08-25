@@ -20,7 +20,6 @@ class Config:
 
 
 def _read_pairs(path: str) -> dict[str, str]:
-    
     pairs: dict[str, str] = {}
     try:
         with open(path, encoding="utf-8") as file:
@@ -31,7 +30,7 @@ def _read_pairs(path: str) -> dict[str, str]:
                 try:
                     key, value = line.split("=", 1)
                 except ValueError as error:
-                    raise ConfigError (f"Invalid line: {line!r}") from error
+                    raise ConfigError(f"Invalid line: {line!r}") from error
                 pairs[key.strip()] = value.strip()
     except FileNotFoundError as error:
         raise ConfigError(f"Configuration file not found: {path!r}") from error
@@ -43,19 +42,21 @@ def load_config(path: str) -> Config:
     pairs = _read_pairs(path)
     if not pairs:
         raise ConfigError("Configuration file is empty.")
-    required_keys = ["WIDTH", "HEIGHT", "ENTRY", "EXIT", "OUTPUT_FILE", "PERFECT"]
+    required_keys = [
+            "WIDTH", "HEIGHT", "ENTRY", "EXIT", "OUTPUT_FILE", "PERFECT"
+            ]
     missing = []
-    
     for key in required_keys:
         if key not in pairs:
             missing.append(key)
     if missing:
         raise ConfigError(f"Missing keys in configuration file: {missing}")
 
+    seed: int | None
     if "SEED" in pairs:
-        seed: int | None = int(pairs["SEED"])
+        seed = int(pairs["SEED"])
     else:
-        seed: int | None = None
+        seed = None
 
     try:
         width: int = int(pairs["WIDTH"])
