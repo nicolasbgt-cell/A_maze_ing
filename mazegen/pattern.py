@@ -60,7 +60,7 @@ def find_pattern_cells(
     }
     centre_candidates = _key_cells(width, height) - corners
     reserved = corners | {entry, exit}
-    placements: list[set[Coordinate]] = []
+    placements: list[tuple[int, set[Coordinate]]] = []
     for origin_y in range(height - pattern_height + 1):
         for origin_x in range(width - pattern_width + 1):
             cells = {
@@ -73,10 +73,15 @@ def find_pattern_cells(
                 cells.isdisjoint(reserved)
                 and not centre_candidates.issubset(cells)
             ):
-                placements.append(cells)
+                distance_x = 2 * origin_x + pattern_width - width
+                distance_y = 2 * origin_y + pattern_height - height
+                distance = distance_x ** 2 + distance_y ** 2
+                placements.append((distance, cells))
 
     generator.shuffle(placements)
-    for cells in placements:
+    placements.sort(key=lambda placement: placement[0])
+
+    for _, cells in placements:
         if geometrically_connected(width, height, cells):
             return cells
 
