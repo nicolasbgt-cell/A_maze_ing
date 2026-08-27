@@ -19,11 +19,20 @@ COLOR_EXIT = "\033[31m"
 
 
 def _horizontal_border(width: int, wall_color: str) -> str:
-    return wall_color + (f"{CORNER}{WALL_H * 3}" * width +
-                         f"{CORNER}") + RESET
+
+    """Construit une ligne de bordure horizontale complète
+    (ex: +---+---+)."""
+
+    corner = COLOR_PATTERN + CORNER + RESET
+    segment = wall_color + WALL_H * 3 + RESET
+
+    return corner + (segment + corner) * width
 
 
 def top_segment(cell: int) -> str:
+
+    """Renvoie le mur du haut de la cellule (fermé ou vide)
+    selon le bit NORTH."""
 
     if cell & NORTH:
         return WALL_H * 3
@@ -33,6 +42,9 @@ def top_segment(cell: int) -> str:
 
 def left_segment(cell: int) -> str:
 
+    """Renvoie le mur de gauche de la cellule (fermé ou vide)
+    selon le bit WEST."""
+
     if cell & WEST:
         return WALL_V
     else:
@@ -41,6 +53,9 @@ def left_segment(cell: int) -> str:
 
 def down_segment(cell: int) -> str:
 
+    """Renvoie le mur du bas de la cellule (fermé ou vide)
+    selon le bit SOUTH."""
+
     if cell & SOUTH:
         return WALL_H * 3
     else:
@@ -48,6 +63,9 @@ def down_segment(cell: int) -> str:
 
 
 def right_segment(cell: int) -> str:
+
+    """Renvoie le mur de droite de la cellule (fermé ou vide)
+    selon le bit EAST."""
 
     if cell & EAST:
         return WALL_V
@@ -59,6 +77,11 @@ def content_row(row: list[int], y: int, path: set[tuple[int, int]],
                 entry: tuple[int, int] | None,
                 exit: tuple[int, int] | None,
                 wall_color: str) -> str:
+
+    """Construit la ligne de contenu d'une rangée
+    (murs verticaux + intérieur des cellules, avec coloration du motif,
+    du chemin, de l'entrée et de la sortie)."""
+
     line = ""
 
     for x, cell in enumerate(row):
@@ -126,7 +149,11 @@ def content_row(row: list[int], y: int, path: set[tuple[int, int]],
 def bottom_row(row: list[int], next_row: list[int] | None = None,
                wall_color: str = "") -> str:
 
-    line = wall_color + CORNER + RESET
+    """Construit la ligne de bordure du bas d'une rangée
+    (murs horizontaux + coins)."""
+
+    corner = COLOR_PATTERN + CORNER + RESET
+    line = corner
 
     for x, cell in enumerate(row):
 
@@ -137,9 +164,11 @@ def bottom_row(row: list[int], next_row: list[int] | None = None,
         segment = down_segment(cell)
 
         if cell == ALL_WALLS or below == ALL_WALLS:
-            line += COLOR_PATTERN + segment + RESET + CORNER
+            line += COLOR_PATTERN + segment + RESET
         else:
-            line += wall_color + segment + RESET + CORNER
+            line += wall_color + segment + RESET
+
+        line += corner
 
     return line
 
@@ -148,6 +177,8 @@ def display(grid: list[list[int]], path: list[tuple[int, int]] | None = None,
             entry: tuple[int, int] | None = None,
             exit: tuple[int, int] | None = None,
             wall_color: str = "") -> str:
+
+    """Construit le rendu ASCII complet du labyrinthe."""
 
     if path:
         path_set = set(path)
@@ -168,6 +199,10 @@ def display(grid: list[list[int]], path: list[tuple[int, int]] | None = None,
 
 
 def run(mg: MazeGenerator) -> None:
+
+    """Lance le menu interactif : régénération,
+     affichage du chemin, rotation des couleurs, sortie."""
+
     show_path = False
     color_index = 0
 

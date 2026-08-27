@@ -122,6 +122,7 @@ def would_create_open_3x3(
     extra = {frozenset(passage)}
 
     def is_open(first: Coordinate, second: Coordinate) -> bool:
+        """Indiquer si deux cellules sont reliees apres l'ouverture testee."""
         if frozenset((first, second)) in extra:
             return True
         return second in open_neighbours(grid, first, blocked)

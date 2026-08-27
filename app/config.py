@@ -20,6 +20,7 @@ class Config:
 
 
 def _read_pairs(path: str) -> dict[str, str]:
+    """Lit un fichier KEY=VALUE et renvoie les paires sous forme de dict."""
     pairs: dict[str, str] = {}
     try:
         with open(path, encoding="utf-8") as file:
@@ -38,7 +39,7 @@ def _read_pairs(path: str) -> dict[str, str]:
 
 
 def load_config(path: str) -> Config:
-
+    """Charge, valide et convertit un fichier de config en objet Config."""
     pairs = _read_pairs(path)
     if not pairs:
         raise ConfigError("Configuration file is empty.")
