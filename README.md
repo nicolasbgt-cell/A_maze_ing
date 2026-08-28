@@ -10,6 +10,9 @@
 
 ☕ If you like this project, you can support me here: [ko-fi.com/nicolasbgt](https://ko-fi.com/nicolasbgt)
 
+### ☕ Support the project
+👉 https://ko-fi.com/nicolasbgt
+
 ## Description
 
 A maze generator in Python, with two generation modes:
@@ -93,6 +96,9 @@ Originally created as part of the 42 curriculum, in pairs. This fork is a person
 *Fork personnel du projet 42 "A-Maze-ing", développé à l'origine en binôme dans le cadre du cursus 42. Ce repo sert de bac à sable pour mes propres améliorations, en dehors du cadre scolaire.*
 
 ☕ Si le projet vous plaît, vous pouvez me soutenir ici : [ko-fi.com/nicolasbgt](https://ko-fi.com/nicolasbgt)
+
+### ☕ Soutenir le projet
+👉 https://ko-fi.com/nicolasbgt
 
 ## Description
 
