@@ -185,6 +185,8 @@ class MazeGenerator:
             )
         if self.entry == self.exit:
             raise ValueError("L'entree et la sortie doivent etre differentes.")
+        if not isinstance(self.perfect, bool):
+            raise ValueError("perfect must be a boolean.")
 
         self._reset_grid()
         self._random.seed(self.seed)
