@@ -8,7 +8,7 @@ debug:
 	python3 -m pdb a_maze_ing.py config.txt
 
 clean:
-	rm -rf __pycache__ .mypy_cache
+	rm -rf app/__pycache__ mazegen/__pycache__ test/__pycache__ __pycache__
 
 lint:
 	flake8 .
