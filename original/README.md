@@ -83,6 +83,10 @@ tests/              # unit tests (not submitted, not graded)
 
 Originally created as part of the 42 curriculum, in pairs. This fork is a personal space to keep improving it on my own.
 
+## Credits
+
+Original pair project with [Tiphaine](https://github.com/tiphainelalonde-gif) — she wrote the `mazegen/` engine (grid, generation algorithm, pattern, shortest path).
+
 ---
 ---
 
@@ -165,3 +169,7 @@ tests/              # tests unitaires (non soumis, non notés)
 ## Origine
 
 Projet créé à l'origine dans le cadre du cursus 42, en binôme. Ce fork est un espace personnel pour continuer à l'améliorer de mon côté.
+
+## Remerciements
+
+Projet original en binôme avec [Tiphaine](https://github.com/tiphainelalonde-gif) — elle a écrit le moteur `mazegen/` (grille, algorithme de génération, motif, plus court chemin).
