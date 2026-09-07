@@ -3,7 +3,7 @@
 ---
 ### Preview
 <div align="center">
-  <img src="asset/Screenshot_1.png" alt="demo">
+  <img src="assets/Screenshot_1.png" alt="demo">
 </div>
 
 *Personal fork of the 42 school project "A-Maze-ing", originally developed in pairs as part of the 42 curriculum. This repo is a sandbox for my own improvements, outside the school assignment.*
