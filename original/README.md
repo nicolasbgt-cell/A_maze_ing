@@ -19,13 +19,13 @@ A maze generator in Python, with two generation modes:
 - **Perfect mode** (`PERFECT=True`): a single path between entry and exit, no loops at all.
 - **Pac-Man mode** (`PERFECT=False`, default): a playable board, fully connected, with at least two independent routes, reachable corners and centre, and few dead-ends.
 
-The maze always includes a visible "42" pattern, drawn by fully closed cells.
+The maze always includes a visible "11" pattern, drawn by fully closed cells.
 
 ## Current status
 
 - Maze generation (iterative DFS + loop/braid handling for Pac-Man mode)
 - **Terminal ASCII** visual rendering with:
-  - "42" pattern coloring
+  - "11" pattern coloring
   - show/hide shortest path (entry → exit)
   - distinct coloring for entry and exit
   - wall color rotation
@@ -106,13 +106,13 @@ Générateur de labyrinthes en Python, avec deux modes de génération :
 - **Mode parfait** (`PERFECT=True`) : un unique chemin entre l'entrée et la sortie, aucune boucle.
 - **Mode Pac-Man** (`PERFECT=False`, par défaut) : plateau jouable, entièrement connecté, avec au moins deux routes indépendantes, coins et centre accessibles, et peu de culs-de-sac.
 
-Le labyrinthe intègre toujours un motif "42" visible, dessiné par des cellules totalement fermées.
+Le labyrinthe intègre toujours un motif "11" visible, dessiné par des cellules totalement fermées.
 
 ## État actuel
 
 - Génération de labyrinthe (DFS itératif + gestion des boucles/braid pour le mode Pac-Man)
 - Rendu visuel en **ASCII terminal** avec :
-  - coloration du motif "42"
+  - coloration du motif "11"
   - affichage/masquage du plus court chemin (entrée → sortie)
   - coloration distincte de l'entrée et de la sortie
   - rotation des couleurs de murs
